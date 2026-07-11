@@ -1,14 +1,14 @@
 # Stagem XPAY for Magento 2
 
-Модуль оплаты [XPAY](https://xpay.com.ua) для Magento 2. После оформления заказа покупатель перенаправляется на платёжный виджет XPAY, а подтверждение оплаты обрабатывается через REST callback.
+Magento 2 payment module for [XPAY](https://xpay.com.ua). After placing an order, the customer is redirected to the XPAY payment widget. Payment confirmation is handled via a REST callback.
 
-## Требования
+## Requirements
 
 - PHP 8.1+
 - Magento 2.4.x
 - OpenSSL
 
-## Установка
+## Installation
 
 ### Composer
 
@@ -19,10 +19,10 @@ bin/magento setup:upgrade
 bin/magento cache:flush
 ```
 
-### Вручную
+### Manual
 
-1. Скопируйте модуль в `app/code/Stagem/Xpay`
-2. Выполните:
+1. Copy the module to `app/code/Stagem/Xpay`
+2. Run:
 
 ```bash
 bin/magento module:enable Stagem_Xpay
@@ -30,31 +30,31 @@ bin/magento setup:upgrade
 bin/magento cache:flush
 ```
 
-## Настройка
+## Configuration
 
-Перейдите в **Stores → Configuration → Sales → Payment Methods → Xpay** и укажите:
+Go to **Stores → Configuration → Sales → Payment Methods → Xpay** and configure:
 
-| Поле | Описание |
-|------|----------|
-| XPAY API URL | Базовый URL API (по умолчанию `https://mapi.xpay.com.ua`) |
-| Xpay public key | Публичный ключ партнёра |
-| Partner ID | ID партнёра |
-| User identified by | Идентификация покупателя по email или телефону |
-| Return URL | Путь success-страницы (по умолчанию `xpay/payment/success`) |
+| Field | Description |
+|-------|-------------|
+| XPAY API URL | API base URL (default: `https://mapi.xpay.com.ua`) |
+| Xpay public key | Partner public key provided by XPAY |
+| Partner ID | Partner ID provided by XPAY |
+| User identified by | Identify the customer by email or phone number |
+| Return URL | Success page path (default: `xpay/payment/success`) |
 
-## Как это работает
+## How it works
 
-1. Покупатель выбирает XPAY на checkout и оформляет заказ.
-2. Magento перенаправляет на `xpay/payment/checkout?order={id}`.
-3. Модуль формирует ссылку на виджет XPAY и перенаправляет покупателя.
-4. XPAY отправляет callback на `GET /rest/V1/xpay/process-pay`.
-5. Модуль проверяет подпись, создаёт invoice и отправляет письмо.
-6. Покупатель возвращается на success-страницу Magento.
+1. The customer selects XPAY at checkout and places the order.
+2. Magento redirects to `xpay/payment/checkout?order={id}`.
+3. The module builds the XPAY widget URL and redirects the customer.
+4. XPAY sends a callback to `GET /rest/V1/xpay/process-pay`.
+5. The module validates the signature, creates an invoice, and sends the invoice email.
+6. The customer is redirected back to the Magento success page.
 
-## Логи
+## Logging
 
-События модуля пишутся в `var/log/xpay.log`.
+Module events are written to `var/log/xpay.log`.
 
-## Лицензия
+## License
 
-MIT — см. [LICENSE.txt](LICENSE.txt).
+MIT — see [LICENSE.txt](LICENSE.txt).
