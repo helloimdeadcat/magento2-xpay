@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="XpayConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Stagem\Xpay\Model\Ui\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="XpayValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">XpayConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="XpayConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">XpayConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="XpayFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">Stagem\Xpay\Model\Ui\ConfigProvider::CODE</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">XpayValueHandlerPool</argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Stagem\Xpay\Api\ProcessPayInterface" type="Stagem\Xpay\Model\ProcessPay"/>
+
+    <virtualType name="Stagem\Xpay\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/xpay.log</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Stagem\Xpay\Logger\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">xpay</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Stagem\Xpay\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Stagem\Xpay\Helper\PaymentHelper">
+        <arguments>
+            <argument name="logger" xsi:type="object">Stagem\Xpay\Logger\Logger</argument>
+        </arguments>
+    </type>
+
+    <type name="Stagem\Xpay\Model\ProcessPay">
+        <arguments>
+            <argument name="logger" xsi:type="object">Stagem\Xpay\Logger\Logger</argument>
+        </arguments>
+    </type>
+
+    <type name="Stagem\Xpay\Controller\Payment\Checkout">
+        <arguments>
+            <argument name="logger" xsi:type="object">Stagem\Xpay\Logger\Logger</argument>
+        </arguments>
+    </type>
+</config>

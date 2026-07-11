@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <xpay>
+                <active>1</active>
+                <title>Xpay</title>
+                <description>Pay securely through XPAY</description>
+                <xpay_url>https://mapi.xpay.com.ua</xpay_url>
+                <identified_by>phone</identified_by>
+                <return_url><![CDATA[xpay/payment/success]]></return_url>
+                <show_payment_info>1</show_payment_info>
+                <model>XpayFacade</model>
+                <order_status>pending</order_status>
+                <group>offline</group>
+                <can_use_internal>1</can_use_internal>
+                <can_use_checkout>1</can_use_checkout>
+            </xpay>
+        </payment>
+    </default>
+</config>
