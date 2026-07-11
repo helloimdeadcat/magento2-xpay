@@ -58,3 +58,7 @@ Module events are written to `var/log/xpay.log`.
 ## License
 
 MIT — see [LICENSE.txt](LICENSE.txt).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).

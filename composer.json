@@ -1,6 +1,7 @@
 {
     "name": "stagem/module-xpay",
     "description": "XPAY payment gateway integration for Magento 2",
+    "version": "1.0.0",
     "type": "magento2-module",
     "license": "MIT",
     "authors": [
