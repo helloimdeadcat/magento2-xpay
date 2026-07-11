@@ -1,5 +1,9 @@
 # Stagem XPAY for Magento 2
 
+[![Packagist Version](https://img.shields.io/packagist/v/helloimdeadcat/magento2-xpay)](https://packagist.org/packages/helloimdeadcat/magento2-xpay)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/helloimdeadcat/magento2-xpay)](https://packagist.org/packages/helloimdeadcat/magento2-xpay)
+[![License: MIT](https://img.shields.io/github/license/helloimdeadcat/magento2-xpay)](LICENSE.txt)
+
 Magento 2 payment module for [XPAY](https://xpay.com.ua). After placing an order, the customer is redirected to the XPAY payment widget. Payment confirmation is handled via a REST callback.
 
 ## Requirements
@@ -10,14 +14,33 @@ Magento 2 payment module for [XPAY](https://xpay.com.ua). After placing an order
 
 ## Installation
 
-### Composer
+### Composer (recommended)
+
+From your Magento 2 project root:
 
 ```bash
-composer require stagem/module-xpay
+composer require helloimdeadcat/magento2-xpay:^1.0
 bin/magento module:enable Stagem_Xpay
 bin/magento setup:upgrade
 bin/magento cache:flush
 ```
+
+> **Note:** The Magento module code namespace is `Stagem\Xpay` (`Stagem_Xpay`). The Composer package name is `helloimdeadcat/magento2-xpay`.
+
+### Composer (before Packagist registration)
+
+If the package is not yet on [Packagist](https://packagist.org), add the GitHub repository to your Magento root `composer.json`:
+
+```json
+"repositories": {
+    "magento2-xpay": {
+        "type": "vcs",
+        "url": "https://github.com/helloimdeadcat/magento2-xpay"
+    }
+}
+```
+
+Then run `composer require helloimdeadcat/magento2-xpay:^1.0` as above.
 
 ### Manual
 
@@ -55,10 +78,10 @@ Go to **Stores → Configuration → Sales → Payment Methods → Xpay** and co
 
 Module events are written to `var/log/xpay.log`.
 
-## License
-
-MIT — see [LICENSE.txt](LICENSE.txt).
-
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md).
+
+## License
+
+MIT — see [LICENSE.txt](LICENSE.txt).

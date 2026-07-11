@@ -1,13 +1,26 @@
 {
-    "name": "stagem/module-xpay",
+    "name": "helloimdeadcat/magento2-xpay",
     "description": "XPAY payment gateway integration for Magento 2",
-    "version": "1.0.0",
     "type": "magento2-module",
     "license": "MIT",
+    "keywords": [
+        "magento2",
+        "magento",
+        "xpay",
+        "payment",
+        "payment-gateway",
+        "checkout",
+        "ukraine"
+    ],
+    "homepage": "https://github.com/helloimdeadcat/magento2-xpay",
+    "support": {
+        "issues": "https://github.com/helloimdeadcat/magento2-xpay/issues",
+        "source": "https://github.com/helloimdeadcat/magento2-xpay"
+    },
     "authors": [
         {
-            "name": "Stagem",
-            "email": "info@stagem.com.ua"
+            "name": "helloimdeadcat",
+            "homepage": "https://github.com/helloimdeadcat"
         }
     ],
     "require": {
